@@ -40,7 +40,7 @@ const MenuButton = () => {
                 <img src={personAddIcon} className='w-6 h-6 -mt-0.5' alt="Search" />
                 <span>All Users</span>
               </div>
-              <div className='flex justify-center items-center border-2 border-2 gap-2 px-10 py-2'>
+              <div className='flex justify-center items-center border-2 gap-2 px-10 py-2'>
                 <img src={notiIcon} className='w-6 h-6 -mt-0.5' alt="notification" />
                 <span>Invitation</span>
               </div>
