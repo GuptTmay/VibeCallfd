@@ -53,3 +53,75 @@ export const setUserStatus = async (email, status) => {
   const data = await res.json();
   if (!res.ok) throw new Error(data.message || 'Updation failed');
 }
+
+export const getAllUsers = async () => {
+  const res = await fetch(`${BASE_URL}/api/v1/users/findall`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Read failed');
+  return data
+}
+
+export const sendUserInvite = async (senderId, recipientId, roomId) => {
+  const res = await fetch(`${BASE_URL}/api/v1/users/senduserinvite`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ senderId, recipientId, roomId }),
+  });
+
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message || 'Invite failed');
+  }
+}
+
+export const getUserInvite = async (id) => {
+  const res = await fetch(`${BASE_URL}/api/v1/users/getuserinvite?id=${id}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Getting Invite failed');
+  return data;
+}
+
+export const removeUserInvite = async (id) => {
+  const res = await fetch(`${BASE_URL}/api/v1/users/removeuserinvite?inviteId=${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message || 'Removing Invite failed');
+  }
+}
+
+
+/*
+    senduserinvite POST
+    Request: (String senderId, String recipientId, String roomId)
+    Response: null
+
+    getuserinvite POST
+    Request:
+    {
+      "id": user id
+    }
+    Response:
+    Info about the person who send the invite
+    {
+      "invId": inviteId,
+      "senderId": senderId,
+      "name": senderName,
+      "email": senderEmail,
+      "roomId" room to join id, 
+    }
+
+    removeuserinvite DELETE 
+    Request: (String invId)
+    Response: null
+ */ 

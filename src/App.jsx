@@ -6,7 +6,6 @@ import MenuButton from './components/MenuButton'
 import ToastManager from './lib/ToastManager' 
 import { AuthMenuStatus } from './constants/AuthMenuStatus'
 
-import './App.css'
 
 function App() {
   const [authMenu, setAuthMenu] = useState(() => {

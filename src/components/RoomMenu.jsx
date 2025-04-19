@@ -1,14 +1,17 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../lib/UserContext'
-import { Avatar } from '@mui/material'
-import Button from './Button.jsx'; 
-import { logoutUser, setUserStatus } from '../lib/api';
+import { RoomIdContext } from '../lib/RoomIdContext.jsx'
 import { toast } from 'react-toastify';
 import { AuthMenuStatus } from '../constants/AuthMenuStatus.js';
-import { useNavigate } from 'react-router-dom';
+import Button from './Button.jsx'; 
+
+import { Avatar } from '@mui/material'
+import { logoutUser, setUserStatus } from '../lib/api';
 
 const RoomMenu = ({ setAuthMenu }) => {
   const { user } = useContext(UserContext);
+  const { setRoomId } = useContext(RoomIdContext);
   const navigator = useNavigate();
 
   const handleLogout = async () => {
@@ -22,8 +25,9 @@ const RoomMenu = ({ setAuthMenu }) => {
   }
 
   const handleRoomJoin = () => {
-      const roomId = makeId(6);
-      navigator(`/room/${roomId}?roomId=${roomId}`); 
+      const newRoomId = makeId(6);
+      setRoomId(newRoomId)
+      navigator(`/room/${newRoomId}?roomId=${newRoomId}`); 
       toast("Creating a Room!!");
       setUserStatus(user.email, "BUSY");
   }
