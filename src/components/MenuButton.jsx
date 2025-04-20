@@ -90,8 +90,9 @@ const MenuButton = () => {
       handleIgnoreUserInvite(i);
   }
 
-  const handleIgnoreUserInvite = (i) => {
-    removeUserInvite(i.inviteId);
+  const handleIgnoreUserInvite = async (i) => {
+    await removeUserInvite(i.inviteId);
+    await fetchInvites();
   }
 
   return (

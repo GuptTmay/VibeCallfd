@@ -12,6 +12,15 @@ const UserGetInviteCard = ({ invite, onAccept, onIgnore }) => {
           alt={invite.name}
           className="w-10 h-10 rounded-full object-cover"
         />
+        <span
+          className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white ${
+            invite.status === "ONLINE"
+              ? "bg-green-500"
+              : invite.status === "BUSY"
+                ? "bg-yellow-500"
+                : "bg-gray-400"
+          }`}
+        />
       </div>
 
       {/* Name & Email */}
@@ -40,7 +49,6 @@ const UserGetInviteCard = ({ invite, onAccept, onIgnore }) => {
 };
 
 export default UserGetInviteCard;
-
 
 // import React from "react";
 // import checkIcon from "../assets/check.svg";
@@ -80,8 +88,8 @@ export default UserGetInviteCard;
 //       >
 //         <img src={checkIcon} alt="Accept" />
 //       </button>
-        
-//        {/* Ignore Button */} 
+
+//        {/* Ignore Button */}
 //       <button
 //         onClick={() => onIgnore()}
 //         className="text-sm bg-red-600 hover:bg-blue-700 text-white px-3 py-1 mx-1 rounded-md"
@@ -93,4 +101,3 @@ export default UserGetInviteCard;
 // };
 
 // export default UserGetInviteCard;
-
